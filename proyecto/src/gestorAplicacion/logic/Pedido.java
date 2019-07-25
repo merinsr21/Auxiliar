@@ -7,12 +7,13 @@ import uiMain.OpcionDeMenu;
 
 public class Pedido {
 	
+	public static int cont = 400;
 	private String codigoP;
 	private String precioTotal;
 	private Factura factura;
 	private Usuario usuario;
 	private static ArrayList<DetallePedido> detallesP = new ArrayList<DetallePedido>();
-	private  static ArrayList<Pedido> pedidosP = new ArrayList<Pedido>();
+	private static ArrayList<Pedido> pedidosP = new ArrayList<Pedido>();
 
 	
 	public Pedido() {
@@ -24,11 +25,23 @@ public class Pedido {
 		this.factura = factura;
 		this.usuario = usuario;
 	}
+	public Pedido(String codigo, Factura factura, String precio ) {
+		this.codigoP = codigo;
+		this.factura = factura;
+		this.precioTotal = precio;
+	}
 	public static void crearPedido(String codigoP, Factura factura, Usuario usuario) {
 		Pedido pedidop = new Pedido(codigoP, factura, usuario);
 		Datos.pedidos.put(codigoP,pedidop);
 		pedidosP.add(pedidop);
 		Pedido.calcularPrecioTotal(pedidop);
+		
+	}
+	public static String generarCodigoP() {
+		int cont1 = cont;
+		cont++;
+		String conts = Integer.toString(cont1);
+		return conts;
 		
 	}
 	public String getCodigoP() {
@@ -63,6 +76,9 @@ public class Pedido {
 		this.precioTotal = precioTotal;
 	}
 	public static String getNombreArreglo(String noSeUsa) {
+		return "pedidosP";
+	}
+	public static String getNombreArreglo() {
 		return "pedidosP";
 	}
 	public static ArrayList<Pedido> getPedidosP(String nombre){

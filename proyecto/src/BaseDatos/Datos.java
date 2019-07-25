@@ -23,22 +23,23 @@ public class Datos {
 	public static HashMap<String, OpcionDeMenu> funcionalidades = new HashMap<String, OpcionDeMenu>();
 	public static HashMap<String, Mesa> mesas = new HashMap<String, Mesa>();   //String= Código de la mesa
 	public static HashMap<String, Comida> menuComidas = new HashMap<String, Comida>(); //String= Código de la comida
-	public static HashMap<String, Pedido> pedidos = new HashMap<String, Pedido>();//
-	public static HashMap<String, Calificacion> calificaciones = new HashMap<String, Calificacion>(); //String= Codigo de la comida(calificación)
-	public static HashMap<String, Factura> facturas = new HashMap<String, Factura>();
-	public static HashMap<String, DetallePedido> detallesPedido = new HashMap<String, DetallePedido>();
+	public static HashMap<String, Pedido> pedidos = new HashMap<String, Pedido>();//	
+	public static HashMap<String, Factura> facturas = new HashMap<String, Factura>(); //String = código de la factura
+	public static HashMap<String, DetallePedido> detallesPedido = new HashMap<String, DetallePedido>(); //String = codigo de el detalle
+	public static ArrayList<Calificacion> calificaciones = new ArrayList<Calificacion>(); 
 
 	
 	public static void cargarDatos() {
 		crearArchivosYDirs();
 		String ruta = System.getProperty("user.dir")+"\\src\\temp\\";
-		cargarUsuarios(ruta);
-		cargarAdmins(ruta);
 		cargarMesas(ruta);
 		cargarMenuComidas(ruta);
 		cargarDetallesPedido(ruta);
 		cargarFacturas(ruta);
 		cargarPedidos(ruta);
+		cargarCalificaciones(ruta);
+		cargarUsuarios(ruta);
+		cargarAdmins(ruta);
 		cargarMenus(ruta);
 	}
 	
@@ -56,8 +57,10 @@ public class Datos {
             		String contraseña = usuario[3];
             		String pedidosP = Pedido.getNombreArreglo(usuario[4]);
             		Usuario usuario1 = new Usuario(nombre, nombreUsuario, correo, contraseña);
-            		for(Pedido r : Pedido.getPedidosP(pedidosP)){
+            		for(Pedido r : Pedido.getPedidosP(pedidosP)){   //los objetos de tipo pedido se meten en la lista de pedidos de usuario
+            			//condición para que se le asignen solo  los pedidos de cada usuario al usuario ¿cómo hacer que ese pedido sea el mio?
             			usuario1.setPedidosU(r);
+            			r.setUsuario(usuario1);    //a cada pedido se le relaciona con el  usuario
             		}
             	}
             }
@@ -132,7 +135,7 @@ public class Datos {
 			
 		}
 	}
-	private static void cargarDetallesPedido(String ruta){
+	private static void cargarDetallesPedido(String ruta){  //**********************************************DETALLE********************************************************
 	    try{
 	        FileReader fr = new FileReader(ruta + "detallesPedido.txt");
 			BufferedReader br = new BufferedReader(fr);
@@ -155,7 +158,7 @@ public class Datos {
 	    }
 	}
 		
-	private static void cargarPedidos(String ruta) {
+	private static void cargarPedidos(String ruta) {  //********************************************PEDIDO********************************************************
 		try {
 			FileReader fr = new FileReader(ruta + "pedidos.txt");
 			BufferedReader br = new BufferedReader(fr);
@@ -166,8 +169,10 @@ public class Datos {
 					String codigo = pedido[0];
 					Factura factura = Factura.getFacturaConCodigo(pedido[1]);
 					String precioTotal = pedido[2];
+					
 					String [] detalles = Arrays.copyOfRange(pedido, 3, pedido.length);
 					Pedido pedidop = new Pedido(codigo, factura, precioTotal);
+					
 					Pedido.Pedidop(pedidop, detalles);
 		    		pedidos.put(codigo, pedidop);
             		Pedido.setPedidosP(pedidop);
@@ -187,7 +192,7 @@ public class Datos {
 		}
 	}
 	
-	private static void cargarFacturas(String ruta){
+	private static void cargarFacturas(String ruta){  //********************************************FACTURA*********************************************************
 	    try{
 	        FileReader fr = new FileReader(ruta + "facturas.txt");
 			BufferedReader br = new BufferedReader(fr);
@@ -200,6 +205,30 @@ public class Datos {
 				    Factura fact = new Factura(codigoF, fecha);
 				    facturas.put(codigoF, fact);
 				    Factura.setFacturasF(fact);
+				}
+			}
+			br.close();
+	    }catch(Exception e) {
+	    	
+	    }
+	}
+	
+	private static void cargarCalificaciones(String ruta){       //**************************************************************************************
+	    try{
+	        FileReader fr = new FileReader(ruta + "calificaciones.txt");
+			BufferedReader br = new BufferedReader(fr);
+			String line;
+			while((line = br.readLine()) != null) {
+				if(!line.isEmpty()) {
+				    String [] calificacion = line.split(";");
+				    String codigo = calificacion[0];
+				    String puntaje = calificacion[3];
+				    String comentario = calificacion[4];
+					Usuario usuario = Usuario.getUsuarioConNombreUsuario(calificacion[1]);
+					Comida comida = Comida.getComidaConCodigo(calificacion[2]);
+				    Calificacion cal = new Calificacion(codigo,comida,puntaje,comentario); 
+				    calificaciones.add(cal);
+				    
 				}
 			}
 			br.close();
@@ -229,13 +258,14 @@ public class Datos {
 	
 	public static void guardarDatos() {
 		crearArchivosYDirs();
-		String ruta = System.getProperty("user.dir")+"\\src\\temp\\";
-		guardarUsuarios(ruta);
+		String ruta = System.getProperty("user.dir")+"\\src\\temp\\";	
 		guardarMesas(ruta);
 		guardarMenuDeComidas(ruta);
 		guardarDetallesPedido(ruta);
-		guardarPedidos(ruta);
 		guardarFacturas(ruta);
+		guardarPedidos(ruta);
+		guardarCalificaciones(ruta);
+		guardarUsuarios(ruta);
 		guardarMenus(ruta);
 	}
 	
@@ -251,6 +281,7 @@ public class Datos {
     			line += usuarioO.getNombre()+";";
     			line += usuarioO.getCorreo()+";";
     			line += usuarioO.getContraseña();
+    			
     			if(usuarioO instanceof Administrador) {
     				pwAdmin.println(line);
 					
@@ -299,7 +330,7 @@ public class Datos {
 		}
 	}
 
-	private static void guardarDetallesPedido(String ruta) {
+	private static void guardarDetallesPedido(String ruta) { //*****************************************DETALLES****************************************************
 		try {
 			FileWriter fw = new FileWriter(ruta + "detallesPedidos.txt");
 			PrintWriter pw = new PrintWriter(fw);
@@ -317,7 +348,7 @@ public class Datos {
 		}
 	}
 	
-	private static void guardarPedidos(String ruta) {
+	private static void guardarPedidos(String ruta) {       //********************************************PEDIDO**********************************************
 		try {
 			FileWriter fw = new FileWriter(ruta + "pedidos.txt");
 			PrintWriter pw = new PrintWriter(fw);
@@ -325,7 +356,7 @@ public class Datos {
 				Pedido pedidoOb = pedido.getValue();
 				String line = pedidoOb.getCodigoP() + ";";
 				line += pedidoOb.getFactura().getCodigoF() + ";";
-				line+= pedidoOb.getPrecioTotal() + ";";
+				line += pedidoOb.getPrecioTotal() + ";";
 				for(DetallePedido dp : pedidoOb.getDetallesP()) {
 					line += dp.getCodigoD() + ";";
 				}
@@ -336,7 +367,7 @@ public class Datos {
 			
 		}
 	}
-	private static void guardarFacturas(String ruta) {
+	private static void guardarFacturas(String ruta) {  //********************************************FACTURA*********************************************************
 		try {
 			FileWriter fw = new FileWriter(ruta + "facturas.txt");
 			PrintWriter pw = new PrintWriter(fw);
@@ -344,6 +375,24 @@ public class Datos {
 				Factura facturaOb = factura.getValue();
 				String line = facturaOb.getCodigoF() + ";";
 				line += facturaOb.getFecha();
+				pw.println(line);
+			}
+			pw.close();
+		}catch(IOException IOe) {
+			
+		}
+	}
+	
+	private static void guardarCalificaciones(String ruta) {     //**********************************CALIFICACIÓN****************************************
+		try {
+			FileWriter fw = new FileWriter(ruta + "calficaciones.txt");
+			PrintWriter pw = new PrintWriter(fw);
+			for(Calificacion cali : calificaciones) {
+				String line = cali.getCodigo() + ";";				
+				line += cali.getUsuario().getNombreUsuario() +";";
+				line += cali.getComida().getCodigo() + ";";
+				line += cali.getPuntaje() + ";";
+				line += cali.getComentario();
 				pw.println(line);
 			}
 			pw.close();

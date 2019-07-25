@@ -14,7 +14,7 @@ public class BorrarComida extends OpcionDeMenu {
 	
 	public void ejecutar() {
 		Scanner entrada = new Scanner(System.in);
-		System.out.println("Ingrese el código de la comida que desea borrar:");
+		System.out.print("Ingrese el código de la comida que desea borrar:");
 		int n = entrada.nextInt();
 		String n1 = Integer.toString(n);
 		String print = "La comida que desea borrar no se encuentra en el menú.";

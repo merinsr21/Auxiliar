@@ -5,6 +5,7 @@ import BaseDatos.Datos;
 
 public class DetallePedido {
 	
+	public static int cont = 500;
 	private String codigoD;
 	private String cantidad;
 	private Comida comida;
@@ -30,14 +31,19 @@ public class DetallePedido {
 		this.precioTotal = precioTotal;
 		this.pedidoD = pedidoD;
 	}
+	public DetallePedido(String codigoD, String cantidad, Comida comida, String precioTotal) { 
+		this.codigoD = codigoD;
+		this.cantidad = cantidad;
+		this.comida = comida;
+		this.precioTotal = precioTotal;
+	}
 	
-	
-	//public static void agregarDetalle(String codigo, String cantidad, Comida comida) {
-	//    DetallePedido detP = new DetallePedido(codigo, cantidad, comida);
-	//    Datos.detallesPedido.put(codigo, detP);
-	//    detallesD.add(detP);
-	//}
-	
+	public static String generarCodigoD() {
+		int cont1 = cont;
+		cont++;
+		String conts = Integer.toString(cont1);
+		return conts;	
+	}
 	public DetallePedido() {
 		
 	}

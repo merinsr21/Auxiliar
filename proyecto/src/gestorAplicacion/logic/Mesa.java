@@ -58,7 +58,7 @@ public class Mesa {
 	}
 	
 	
-	public static String ocuparMesa(String codigo, String numeroSillas, String nombreUsuario) {              //A una mesa solo se le puede asignar un usuario. REVISAR!
+	public static String ocuparMesa(String codigo, String numeroSillas, String nombreUsuario) {              //A una mesa solo se le puede asignar un usuario. 
 		String print = "La mesa que desea ocupar no existe";
 		for(Mesa buscador : mesasM) {
 			if(buscador.codigo.equals(codigo)) {

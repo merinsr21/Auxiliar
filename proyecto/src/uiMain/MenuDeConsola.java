@@ -56,7 +56,7 @@ public class MenuDeConsola {
 			System.out.println(i+" "+option);
 			i++;
 		}
-		//Opcion para terminar el programa, hecho con un try catch.
+		//Opción para terminar el programa, hecho con un try catch.
 		System.out.println(i+" Terminar programa");
 		
 		System.out.print("Ingrese una opción: ");

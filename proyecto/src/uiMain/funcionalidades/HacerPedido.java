@@ -13,7 +13,7 @@ public class HacerPedido extends OpcionDeMenu {
 		super(pos);
 	}
 	
-	public void ejecutar() {                                         //Hacer un pedido/ crea un objeto tipo pedido y se agrega en la lista de pedidos de usuario,lo mismo con factura, con el for se crean n objetos de tipo detallePedido que se almacenan en la lista del objeto pedido anteriormente creado.
+	public void ejecutar() {              //Hacer un pedido/ crea un objeto tipo pedido y se agrega en la lista de pedidos de usuario,lo mismo con factura, con el for se crean n objetos de tipo detallePedido que se almacenan en la lista del objeto pedido anteriormente creado.
 		
 		Scanner entrada = new Scanner(System.in);
 		System.out.print("Ingrese su nombre de usuario: ");
@@ -21,14 +21,16 @@ public class HacerPedido extends OpcionDeMenu {
 		if(Usuario.getUsuarioConNombreUsuario(nombreUsuario).getMesa() != null) {
 			System.out.print("Ingrese la fecha actual: ");
 			String fecha = entrada.next();
-			Pedido pedido = new Pedido(codigo,null,Usuario.getUsuarioConNombreUsuario(nombreUsuario));
-			Factura factura = new Factura(codigo,fecha,null);
+			String code = Pedido.generarCodigoP();
+			String codef = Factura.generarCodigoF();
+			Pedido pedido = new Pedido(code,null,Usuario.getUsuarioConNombreUsuario(nombreUsuario));
+			Factura factura = new Factura(codef,fecha,null);
 			Usuario.getUsuarioConNombreUsuario(nombreUsuario).setPedidosU(pedido);
 			Usuario.getUsuarioConNombreUsuario(nombreUsuario).setFacturasU(factura);
 			pedido.setFactura(factura);
 			factura.setPedidoF(pedido);
-			Datos.pedidos.put(codigo,pedido);
-			Datos.facturas.put(codigo,factura);
+			Datos.pedidos.put(code,pedido);
+			Datos.facturas.put(codef,factura);
 			System.out.print("Ingrese la cantidad de platos que desee pedir:");
 			int ciclo = entrada.nextInt();
 			for (int i = 1; i <= ciclo; i++) {
@@ -36,7 +38,8 @@ public class HacerPedido extends OpcionDeMenu {
 				String codigo = entrada.next();
 				System.out.print("Ingrese la cantidad de unidades de este plato que desea ordenar: ");
 				String cantidad = entrada.next();
-				pedido.setDetallesP(DetallePedido.crearDetallePedido(codigoD,cantidad,codigo,pedido));
+				String coded = DetallePedido.generarCodigoD();
+				pedido.setDetallesP(DetallePedido.crearDetallePedido(coded, cantidad,codigo,pedido));
 			}
 		}
 		else {

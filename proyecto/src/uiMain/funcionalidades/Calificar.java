@@ -17,7 +17,7 @@ public class Calificar extends OpcionDeMenu {
 		Scanner entrada = new Scanner (System.in);
 		System.out.println("Ingrese su nombre de usuario: ");
 		String nombreUsuario = entrada.next();
-		System.out.println("Ingrese la fecha de su factura: ");
+		System.out.print("Ingrese la fecha de su factura(día/mes/año): ");
 		String fecha = entrada.next();
 		Usuario usuario = Usuario.getUsuarioConNombreUsuario(nombreUsuario);
 		Pedido pedido = null;

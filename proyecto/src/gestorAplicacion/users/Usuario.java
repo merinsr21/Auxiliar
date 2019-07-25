@@ -116,17 +116,17 @@ public class Usuario {
 		usuario.setContraseña(contraseña);
 		
 		//Menu por defecto al crear un nuevo usuario
-		String [] funcionalidades = {"1","2","3","4","5","6","12"};
+		String [] funcionalidades = {"1","2","3","4","5","6","15","12"};
 		MenuDeConsola.nuevoMenu(usuario, funcionalidades);
 		if(true){
 			Datos.usuarios.put(nombreUsuario,usuario);
 			return "Ha sido creado";
 		}else{
-			return "No ha sido creado";
+			return "No ha sido creado";    //para que no genere error con respecto al tipo de retorno del método
 		}
 	}
 	
-	public static String editarUsuario(Usuario uusuario,int opcion, String valor){
+	public static String editarUsuario(Usuario uusuario,int opcion, String valor){ //editar un usuario en específico
 		switch (opcion) {
 		case 1:	
 			uusuario.setNombre(valor);
@@ -152,7 +152,6 @@ public class Usuario {
         Usuario usuario = Usuario.getUsuarioConNombreUsuario(nombreUsuario);
         if (usuario != null){
             if(usuario.getNombreUsuario().equals(nombreUsuario) && usuario.getContraseña().equals(contraseña)){
-            	//Seteo el usuario
             	Main.usuario = usuario;
                 return "Bienvenido "+usuario.getNombre();
             }
@@ -165,19 +164,6 @@ public class Usuario {
         return "Adiós";
     }
     
-	
-	public String editarMiUsuario(int opcion, String valor){
-		switch (opcion) {
-		case 1:	
-			this.setNombre(valor);
-			return "Nombre modificado";
-		case 2:
-			this.setContraseña(valor);
-			return "Contraseña modificada";
-		default:
-			return "Opción no válida";
-		}
-	}
 
 	
 }

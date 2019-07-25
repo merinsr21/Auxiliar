@@ -5,6 +5,7 @@ import BaseDatos.*;
 
 public class Factura {
 	
+	public static int cont = 300;
 	private String codigoF;  //concatenar nombreUsuario+fecha
 	private String fecha;
 	private Pedido pedidoF;
@@ -28,7 +29,12 @@ public class Factura {
 		setFacturasF(factura2);
 		Datos.facturas.put(codigo, factura2);
 	}
-	
+	public static String generarCodigoF() {
+		int cont1 = cont;
+		cont++;
+		String conts = Integer.toString(cont1);
+		return conts;	
+	}
 	public Factura() {
 		
 	}
