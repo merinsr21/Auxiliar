@@ -25,6 +25,7 @@ public class NuevoAdmin extends OpcionDeMenu {
 		System.out.print("Ingrese su contraseña: ");
 		String contraseña = entrada.next();
 		Administrador.nuevoAdministrador(nombre, nombreUsuario, correo, contraseña);
+		System.out.println("Administrador creado.");
 	}
 
 	@Override

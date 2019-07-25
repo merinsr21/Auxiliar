@@ -6,7 +6,7 @@ import gestorAplicacion.users.*;
 
 public class Calificacion {
 	
-	private String codigo;        //identificador = codigo comida a la que califica.
+	private String codigoCa;        
 	private String puntaje;
 	private Comida comida;
 	private Usuario usuario;
@@ -17,23 +17,23 @@ public class Calificacion {
 		
 	}
 	
-	public Calificacion (String codigo, String puntaje, Usuario usuario){
-		this.codigo = codigo;
+	public Calificacion (String codigoCa, String puntaje, Usuario usuario){
+		this.codigoCa = codigoCa;
 		this.puntaje=puntaje;
 		this.usuario = usuario;
 	}
-	public Calificacion (String codigo, Comida comida, String puntaje, Usuario usuario){
-		this.codigo = codigo;
+	public Calificacion (String codigoCa, Comida comida, String puntaje, Usuario usuario){
+		this.codigoCa = codigoCa;
 		this.comida = comida;
 		this.puntaje=puntaje;
 		this.usuario = usuario;
 	}
-	public Calificacion (String codigo, String puntaje){
-		this.codigo = codigo;
+	public Calificacion (String codigoCa, String puntaje){
+		this.codigoCa = codigoCa;
 		this.puntaje=puntaje;
 	}
-	public Calificacion (String codigo, Comida comida, String puntaje, String comentario){
-		this.codigo = codigo;
+	public Calificacion (String codigoCa, Comida comida, String puntaje, String comentario){
+		this.codigoCa = codigoCa;
 		this.comida = comida;
 		this.puntaje=puntaje;
 		this.comentario = comentario;
@@ -48,12 +48,12 @@ public class Calificacion {
 		this.comentario = comentario;
 	}
 
-	public String getCodigo() {
-		return codigo;
+	public String getCodigoCa() {
+		return codigoCa;
 	}
 	
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+	public void setCodigoCa(String codigo) {
+		this.codigoCa = codigo;
 	}
 	
 	public String getPuntaje() {
@@ -89,10 +89,11 @@ public class Calificacion {
 		calificaciones.add(calificacion);
 	}
 	
-	public static void crearCalificacion(String codigo, String puntaje, Usuario usuario) {                
+	public static Calificacion crearCalificacion(String codigo, String puntaje, Usuario usuario) {                
 		Calificacion calificacion = new Calificacion(codigo, puntaje, usuario);   //No podemos guardar datos en la hash(se sobreescriben)
 		Datos.calificaciones.add(calificacion);	        
 		Calificacion.setCalificaciones(calificacion);
+		return calificacion;
 	}
 	
 }

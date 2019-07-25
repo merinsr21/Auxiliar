@@ -28,17 +28,30 @@ public class Calificar extends OpcionDeMenu {
 		}
 		System.out.print("Ingrese el código de la comida que desea calificar: ");
 		String codigo = entrada.next();
-		String print = "La comida que dese calificar debe estar en su pedido";
+		String print = "La comida que desea calificar debe estar en su pedido.";
 		for(DetallePedido z: pedido.getDetallesP()) {
 			if(z.getComida().getCodigo().equals(codigo)) {
 				System.out.print("Ingrese la calificación de la comida: ");
 				String puntaje = entrada.next();
-				Calificacion.crearCalificacion(codigo, puntaje, usuario);
+				Calificacion ca = Calificacion.crearCalificacion(codigo, puntaje, usuario);
 				print = "Gracias por calificar, vuelva pronto.";
-				break;
+				if(!print.equals("La comida que desea calificar debe estar en su pedido.")){
+					System.out.println("¿Desea añadir un comentario a su calificación?   1 = Si , 2 = No");
+					int n  = entrada.nextInt();
+					if(n == 1) {
+						System.out.println("Ingrese un breve comentario sobre la comida:");
+						String comentario = entrada.next();
+						ca.setComentario(comentario);
+						System.out.println("Su cometario ha sido añadido.");
+					}
+					else {
+						break;
+					}
+				}
 			}
 		}
 		System.out.println(print);
+		
 	}
 	
 	//SE PUEDE CALIFICAR MAS DE UNA VEZ LA MISMA COMIDA  //REVISAR

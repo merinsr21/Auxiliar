@@ -21,6 +21,7 @@ public class EditarUsuario extends OpcionDeMenu {
 		System.out.print("Ingrese el cambio que quiere generar de acuerdo a la opción escogida:");
 		String valor = entrada.next();
 		Usuario.editarUsuario(usuario, opcion, valor);
+		System.out.println("¡El usuario ha sido editado con éxito!");
 
 	}
 	

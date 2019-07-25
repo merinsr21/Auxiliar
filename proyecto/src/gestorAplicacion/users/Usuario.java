@@ -16,11 +16,10 @@ public class Usuario {
 	private String contraseña;
 	private String correo;
 	private Mesa mesa;
-	private Boolean estado;
 	private MenuDeConsola menu;
 	private ArrayList<Pedido> pedidosU = new ArrayList<Pedido>();
 	private ArrayList<Factura> facturasU = new ArrayList<Factura>();
-	private ArrayList<Calificacion> calificaciones = new ArrayList<Calificacion>();
+	private ArrayList<Calificacion> calificacionesU = new ArrayList<Calificacion>();
 	
 	
 	public Usuario() {
@@ -70,12 +69,6 @@ public class Usuario {
 	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;
 	}
-	public Boolean getEstado() {
-		return estado;
-	}
-	public void setEstado(Boolean estado) {
-		this.estado = estado;
-	}
 	public ArrayList<Pedido> getPedidosU() {
 		return pedidosU;
 	}
@@ -88,11 +81,11 @@ public class Usuario {
 	public void setFacturasU(Factura factura) {
 		facturasU.add(factura);
 	}
-	public ArrayList<Calificacion> getCalificaciones() {
-		return calificaciones;
+	public ArrayList<Calificacion> getCalificacionesU() {
+		return calificacionesU;
 	}
-	public void setCalificaciones(Calificacion calificacion) {
-		calificaciones.add(calificacion);
+	public void setCalificacionesU(Calificacion calificacion) {
+		calificacionesU.add(calificacion);
 	}
 	
 	public MenuDeConsola getMenu() {

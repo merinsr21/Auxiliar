@@ -1,4 +1,4 @@
-cristian;CristianInvitado;cristian@gmail.com;12345;pedidosP
-alejandro;AlejandroInvitado;alejandro@gmail.com;12345;pedidosP
-felipe;FelipeInvitado;felipe@gmail.com;12345;pedidosP
-laura;LauraInvitado;laura@gmail.com;12345;pedidosP
+cristian;CristianInvitado;cristian@gmail.com;12345
+alejandro;AlejandroInvitado;alejandro@gmail.com;12345
+felipe;FelipeInvitado;felipe@gmail.com;12345
+laura;LauraInvitado;laura@gmail.com;12345

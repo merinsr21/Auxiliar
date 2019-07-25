@@ -10,7 +10,7 @@ public class Comida implements Comparable<Comida> {
 	private String nombre;
 	private String precio;
 	private String calorias;
-	private ArrayList<DetallePedido> pedidos = new ArrayList<DetallePedido>();
+	private DetallePedido detallePedido;
 	private ArrayList<Calificacion> calificaciones = new ArrayList<Calificacion>();
 	private static ArrayList<Comida> menuC = new ArrayList<Comida>();
 	
@@ -55,7 +55,14 @@ public class Comida implements Comparable<Comida> {
 		return calorias;
 	}
 	
-	
+	public DetallePedido getDetallePedido() {
+		return detallePedido;
+	}
+
+	public void setDetallePedido(DetallePedido detallePedido) {
+		this.detallePedido = detallePedido;
+	}
+
 	public static void setMenuC(Comida comida) {
 		Comida.menuC.add(comida);
 	}

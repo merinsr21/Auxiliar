@@ -27,7 +27,7 @@ public class Mesa {
 		Datos.mesas.put(codigo, mesam);
 	}
 	
-	public String getCodigo() {
+	public String getCodigoM() {
 		return codigo;
 	}
 	
@@ -54,7 +54,7 @@ public class Mesa {
 	}
 	
 	public String toString() {
-		return "Mesa número "+getCodigo()+", con "+" "+getNumeroDeSillas()+" "+"sillas";
+		return "Mesa número "+getCodigoM()+", con "+" "+getNumeroDeSillas()+" "+"sillas";
 	}
 	
 	
@@ -75,7 +75,7 @@ public class Mesa {
 						buscador.setOcupada("true");
 						Usuario.getUsuarioConNombreUsuario(nombreUsuario).setMesa(buscador);
 						buscador.usuarios.add(Usuario.getUsuarioConNombreUsuario(nombreUsuario));
-						print = "La mesa"+" "+buscador.getCodigo()+" "+"ha sido ocupada.";
+						print = "La mesa"+" "+buscador.getCodigoM()+" "+"ha sido ocupada.";
 						break;
 					}
 				}
@@ -86,7 +86,7 @@ public class Mesa {
 	}
 	
 	public void liberarMesa(String codigo) {
-		for(Mesa buscador: mesasM) {
+		for(Mesa buscador: Mesa.getMesasM()) {
 			if(buscador.codigo.equals(codigo)) {
 				usuarios.get(0).setMesa(null);
 				buscador.usuarios = null;

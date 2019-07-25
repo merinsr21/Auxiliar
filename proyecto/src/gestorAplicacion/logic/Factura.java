@@ -5,8 +5,8 @@ import BaseDatos.*;
 
 public class Factura {
 	
-	public static int cont = 300;
-	private String codigoF;  //concatenar nombreUsuario+fecha
+	public static int cont = 300;    //para generar el código
+	private String codigoF;  
 	private String fecha;
 	private Pedido pedidoF;
 	private  static ArrayList<Factura> facturasF = new ArrayList<Factura>();

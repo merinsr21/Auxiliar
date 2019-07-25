@@ -21,6 +21,7 @@ public class NuevoChef extends OpcionDeMenu {
 		System.out.print("Ingrese su contraseña: ");
 		String contraseña = entrada.next();
 		Chef.nuevoChef(nombre, nombreUsuario, correo, contraseña);
+		System.out.println("Chef creado.");
 	}
 	
 	public String toString() {

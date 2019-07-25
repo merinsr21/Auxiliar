@@ -19,6 +19,7 @@ public class EliminarUsuario extends OpcionDeMenu{
 		String d = entrada.next();
 		if(d.equals("si")) {
 			Usuario.eliminarUsuario(nombre);
+			System.out.println("El usuario se ha eliminado.");
 		}else {
 			System.out.println("El usuario no se ha eliminado.");
 		}

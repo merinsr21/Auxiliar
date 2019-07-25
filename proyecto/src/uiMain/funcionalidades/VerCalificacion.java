@@ -11,7 +11,7 @@ public class VerCalificacion extends OpcionDeMenu {
 		super(pos);
 	}
 	
-	public void ejecutar() {                                //NO FUNCIONA.
+	public void ejecutar() {                                
 		Scanner entrada = new Scanner(System.in); 
 		System.out.print("Ingrese el codigo de la comida :");
 		String codigo = entrada.next();
@@ -23,10 +23,10 @@ public class VerCalificacion extends OpcionDeMenu {
 				sum += Integer.parseInt(r.getPuntaje());
 			}
 		}
-		System.out.println("La comida con codigo "+codigo+" tiene "+cont+" calificaciones, y un total de "+sum+"/"+(5*cont)+" puntos");
+		System.out.println("La comida con código "+codigo+" tiene "+cont+" calificaciones, y un total de "+sum+"/"+(5*cont)+" puntos");
 	}
 	
 	public String toString() {
-		return "Mostrar calificacion de una comida especifica";
+		return "Mostrar calificación de una comida específica";
 	}
 }
