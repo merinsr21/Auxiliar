@@ -18,7 +18,6 @@ public class Usuario {
 	private Mesa mesa;
 	private MenuDeConsola menu;
 	private ArrayList<Pedido> pedidosU = new ArrayList<Pedido>();
-	private ArrayList<Factura> facturasU = new ArrayList<Factura>();
 	private ArrayList<Calificacion> calificacionesU = new ArrayList<Calificacion>();
 	
 	
@@ -74,12 +73,6 @@ public class Usuario {
 	}
 	public void setPedidosU(Pedido pedido) {
 		pedidosU.add(pedido);
-	}
-	public ArrayList<Factura> getFacturasU() {
-		return facturasU;
-	}
-	public void setFacturasU(Factura factura) {
-		facturasU.add(factura);
 	}
 	public ArrayList<Calificacion> getCalificacionesU() {
 		return calificacionesU;

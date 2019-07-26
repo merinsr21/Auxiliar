@@ -7,7 +7,7 @@ import uiMain.OpcionDeMenu;
 
 public class Pedido {
 	
-	public static int cont = 400;
+	private static int cont = 400;
 	private String codigoP;
 	private String precioTotal;
 	private Factura factura;

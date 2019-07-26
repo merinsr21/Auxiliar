@@ -5,7 +5,7 @@ import BaseDatos.*;
 
 public class Factura {
 	
-	public static int cont = 300;    //para generar el código
+	private static int cont = 300;    //para generar el código
 	private String codigoF;  
 	private String fecha;
 	private Pedido pedidoF;
@@ -21,14 +21,14 @@ public class Factura {
 		this.fecha = fecha;
 		this.pedidoF = pedido;
 	}
-	public static void agregarFactura(String codigo, String fecha, Pedido pedido) {
-		Factura fact = new Factura(codigo, fecha);
-		Factura factura2 = new Factura(codigo, fecha, pedido);
-		setFacturasF(fact);
-		Datos.facturas.put(codigo, fact);
-		setFacturasF(factura2);
-		Datos.facturas.put(codigo, factura2);
-	}
+	//public static void agregarFactura(String codigo, String fecha, Pedido pedido) {
+	//	Factura fact = new Factura(codigo, fecha);
+	//	Factura factura2 = new Factura(codigo, fecha, pedido);
+	//	setFacturasF(fact);
+	//	Datos.facturas.put(codigo, fact);
+	//	setFacturasF(factura2);
+	//	Datos.facturas.put(codigo, factura2);
+	//}
 	public static String generarCodigoF() {
 		int cont1 = cont;
 		cont++;

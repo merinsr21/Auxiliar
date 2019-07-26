@@ -26,7 +26,6 @@ public class HacerPedido extends OpcionDeMenu {
 			Pedido pedido = new Pedido(code,null,Usuario.getUsuarioConNombreUsuario(nombreUsuario));
 			Factura factura = new Factura(codef,fecha,null);
 			Usuario.getUsuarioConNombreUsuario(nombreUsuario).setPedidosU(pedido);
-			Usuario.getUsuarioConNombreUsuario(nombreUsuario).setFacturasU(factura);
 			pedido.setFactura(factura);
 			factura.setPedidoF(pedido);
 			Datos.pedidos.put(code,pedido);

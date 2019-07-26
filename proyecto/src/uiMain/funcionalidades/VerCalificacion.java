@@ -18,7 +18,7 @@ public class VerCalificacion extends OpcionDeMenu {
 		int cont = 0;
 		int sum = 0;
 		for(Calificacion r: Calificacion.getCalificaciones()) {
-			if(r.getCodigo().equals(codigo)) {
+			if(r.getCodigoCa().equals(codigo)) {
 				cont ++;
 				sum += Integer.parseInt(r.getPuntaje());
 			}

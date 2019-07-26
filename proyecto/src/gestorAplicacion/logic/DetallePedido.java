@@ -5,7 +5,7 @@ import BaseDatos.Datos;
 
 public class DetallePedido {
 	
-	public static int cont = 500;
+	private static int cont = 500;
 	private String codigoD;
 	private String cantidad;
 	private Comida comida;

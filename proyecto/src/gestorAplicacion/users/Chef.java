@@ -6,8 +6,6 @@ import gestorAplicacion.logic.*;
 import uiMain.MenuDeConsola;
 
 public class Chef extends Usuario{
-	private boolean estado;
-	private static ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 	
 	public Chef() {
 		
@@ -21,19 +19,6 @@ public class Chef extends Usuario{
 	public Chef(String nombre, String nombreUsuario, String correo, String contraseña) {
 		super(nombre, nombreUsuario, correo, contraseña);
 		Datos.usuarios.put(nombreUsuario, this);
-	}
-	
-	public boolean isEstado() {
-		return estado;
-	}
-	public void setEstado(boolean estado) {
-		this.estado = estado;
-	}
-	public static ArrayList<Pedido> getPedidos() {
-		return pedidos;
-	}
-	public static void setPedidos(Pedido pedido) {
-		pedidos.add(pedido);
 	}
 	
 	public static String nuevoChef(String nombre, String nombreUsuario, String correo, String contraseña){
