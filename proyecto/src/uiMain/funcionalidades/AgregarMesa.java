@@ -17,7 +17,7 @@ public class AgregarMesa extends OpcionDeMenu{
 			Scanner entrada = new Scanner(System.in);
 			System.out.println("Ingrese codigo(0-99) y el numero de sillas de la mesa que desea agregar");
 			String codigo = entrada.next();
-			String print = "El codigo ingresado no se encuentra en el intervalo pedido(0-99)";
+			String print = "El código ingresado no se encuentra en el intervalo pedido(0-99)";
 			if(Integer.parseInt(codigo) >= 0 && Integer.parseInt(codigo) <= 99) {
 				if(!Datos.mesas.containsKey(codigo)) {
 					String numeroDeSillas = entrada.next();

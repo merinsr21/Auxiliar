@@ -32,7 +32,7 @@ public class Comida implements Comparable<Comida> {
 	}
 	
 	public String toString() {
-		return "   "+codigo+"      "+nombre+"            "+precio;
+		return "   "+codigo+"      "+nombre+"            "+precio+"         " + calorias;
 	}
 	
 	public static ArrayList<Comida> getMenuC() {

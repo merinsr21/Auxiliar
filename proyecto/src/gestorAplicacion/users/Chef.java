@@ -30,7 +30,7 @@ public class Chef extends Usuario{
 		chef.setContraseña(contraseña);
 		
 		//Menu por defecto al crear un nuevo chef
-		String [] funcionalidades = {"12"};
+		String [] funcionalidades = {"18","8","12"};
 		MenuDeConsola.nuevoMenu(chef, funcionalidades);
 		Datos.usuarios.put(nombreUsuario,chef);
 		return "Ha sido creado";

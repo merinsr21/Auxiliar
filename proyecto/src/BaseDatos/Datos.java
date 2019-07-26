@@ -23,7 +23,7 @@ public class Datos {
 	public static HashMap<String, OpcionDeMenu> funcionalidades = new HashMap<String, OpcionDeMenu>();
 	public static HashMap<String, Mesa> mesas = new HashMap<String, Mesa>();   //String= Código de la mesa
 	public static HashMap<String, Comida> menuComidas = new HashMap<String, Comida>(); //String= Código de la comida
-	public static HashMap<String, Pedido> pedidos = new HashMap<String, Pedido>();//	
+	public static HashMap<String, Pedido> pedidos = new HashMap<String, Pedido>();//String= Códigodel pedido	
 	public static HashMap<String, Factura> facturas = new HashMap<String, Factura>(); //String = código de la factura
 	public static HashMap<String, DetallePedido> detallesPedido = new HashMap<String, DetallePedido>(); //String = codigo de el detalle
 	public static ArrayList<Calificacion> calificaciones = new ArrayList<Calificacion>(); 
@@ -57,7 +57,6 @@ public class Datos {
             		String nombre = usuario[1];
             		String correo = usuario[2];
             		String contraseña = usuario[3];
-            		String pedidosP = Pedido.getNombreArreglo(usuario[4]);
             		Usuario usuario1 = new Usuario(nombre, nombreUsuario, correo, contraseña);
             		String [] ped = line3.split(";");
             		for(String x : ped) {
@@ -79,10 +78,6 @@ public class Datos {
                 					f.setUsuario(usuario1);
                 			}
             			}	
-            		}
-            		for(Pedido r : Pedido.getPedidosP(pedidosP)){   //los objetos de tipo pedido se meten en la lista de pedidos de usuario
-            			usuario1.setPedidosU(r);
-            			r.setUsuario(usuario1);    //a cada pedido se le relaciona con el  usuario
             		}
             	}
             }
@@ -234,7 +229,7 @@ public class Datos {
 	    }
 	}
 	
-	private static void cargarCalificaciones(String ruta){       //**************************************************************************************
+	private static void cargarCalificaciones(String ruta){     //**************************************CALIFICACIONES************************************************
 	    try{
 	        FileReader fr = new FileReader(ruta + "calificaciones.txt");
 			BufferedReader br = new BufferedReader(fr);
@@ -245,7 +240,6 @@ public class Datos {
 				    String codigo = calificacion[0];
 				    String puntaje = calificacion[2];
 				    String comentario = calificacion[3];
-					//Usuario usuario = Usuario.getUsuarioConNombreUsuario(calificacion[1]);
 					Comida comida = Comida.getComidaConCodigo(calificacion[1]);
 				    Calificacion cal = new Calificacion(codigo,comida,puntaje,comentario); 
 				    calificaciones.add(cal);
@@ -302,13 +296,13 @@ public class Datos {
     			line += usuarioO.getNombre()+";";
     			line += usuarioO.getCorreo()+";";
     			line += usuarioO.getContraseña();
-    			String line2 = null;
-    			String line3 = null;
+    			String line2 = "";
+    			String line3 = "";
     			for(Calificacion f : usuarioO.getCalificacionesU()) {//en una tercera línea del txt muestra las calificaciones asociados al usuario
-    				line2 += f.getCodigoCa();
+    				line2 += f.getCodigoCa()+";";
     			}
     			for(Pedido p : usuarioO.getPedidosU()) { //en una segunda línea del txt muestra los pedidos asociados al usuario
-    				line3 += p.getCodigoP();
+    				line3 += p.getCodigoP()+";";
     			}
     			if(usuarioO instanceof Administrador) {
     				pwAdmin.println(line);
@@ -388,11 +382,10 @@ public class Datos {
 				Pedido pedidoOb = pedido.getValue();
 				String line = pedidoOb.getCodigoP() + ";";
 				line += pedidoOb.getFactura().getCodigoF() + ";";
-				line += pedidoOb.getUsuario().getNombreUsuario() +";";				
 				for(DetallePedido dp : pedidoOb.getDetallesP()) {
 					line += dp.getCodigoD() + ";";
 				}
-				line += pedidoOb.getPrecioTotal() + ";";
+				line += pedidoOb.getPrecioTotal();
 				pw.println(line.substring(0,(line.length()-1)));
 			}
 			pw.close();
@@ -407,7 +400,6 @@ public class Datos {
 			for(Map.Entry<String, Factura> factura : facturas.entrySet()) {
 				Factura facturaOb = factura.getValue();
 				String line = facturaOb.getCodigoF() + ";";
-				line += facturaOb.getPedidoF().getCodigoP() + ";";
 				line += facturaOb.getFecha();
 				pw.println(line);
 			}
@@ -423,7 +415,6 @@ public class Datos {
 			PrintWriter pw = new PrintWriter(fw);
 			for(Calificacion cali : calificaciones) {
 				String line = cali.getCodigoCa() + ";";				
-				line += cali.getUsuario().getNombreUsuario() +";";
 				line += cali.getComida().getCodigo() + ";";
 				line += cali.getPuntaje() + ";";
 				line += cali.getComentario();

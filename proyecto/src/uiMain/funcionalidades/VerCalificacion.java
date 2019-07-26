@@ -13,7 +13,7 @@ public class VerCalificacion extends OpcionDeMenu {
 	
 	public void ejecutar() {                                
 		Scanner entrada = new Scanner(System.in); 
-		System.out.print("Ingrese el codigo de la comida :");
+		System.out.print("Ingrese el código de la comida: ");
 		String codigo = entrada.next();
 		int cont = 0;
 		int sum = 0;
@@ -27,6 +27,6 @@ public class VerCalificacion extends OpcionDeMenu {
 	}
 	
 	public String toString() {
-		return "Mostrar calificación de una comida específica";
+		return "Ver calificación de una comida específica";
 	}
 }

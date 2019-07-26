@@ -19,18 +19,24 @@ public class HacerPedido extends OpcionDeMenu {
 		System.out.print("Ingrese su nombre de usuario: ");
 		String nombreUsuario = entrada.next();
 		if(Usuario.getUsuarioConNombreUsuario(nombreUsuario).getMesa() != null) {
-			System.out.print("Ingrese la fecha actual: ");
+			System.out.print("Ingrese la fecha actual(día/mes/año): ");
 			String fecha = entrada.next();
 			String code = Pedido.generarCodigoP();
 			String codef = Factura.generarCodigoF();
+			
 			Pedido pedido = new Pedido(code,null,Usuario.getUsuarioConNombreUsuario(nombreUsuario));
 			Factura factura = new Factura(codef,fecha,null);
-			Usuario.getUsuarioConNombreUsuario(nombreUsuario).setPedidosU(pedido);
+			
+			
 			pedido.setFactura(factura);
 			factura.setPedidoF(pedido);
+			
+			Usuario.getUsuarioConNombreUsuario(nombreUsuario).setPedidosU(pedido);
+			
 			Datos.pedidos.put(code,pedido);
 			Datos.facturas.put(codef,factura);
-			System.out.print("Ingrese la cantidad de platos que desee pedir:");
+			
+			System.out.print("Ingrese la cantidad de platos que desee pedir: ");
 			int ciclo = entrada.nextInt();
 			for (int i = 1; i <= ciclo; i++) {
 				System.out.print("Ingrese el código del plato que desea ordenar: ");
@@ -38,8 +44,9 @@ public class HacerPedido extends OpcionDeMenu {
 				System.out.print("Ingrese la cantidad de unidades de este plato que desea ordenar: ");
 				String cantidad = entrada.next();
 				String coded = DetallePedido.generarCodigoD();
-				pedido.setDetallesP(DetallePedido.crearDetallePedido(coded, cantidad,codigo,pedido));
+				pedido.setDetallesP(DetallePedido.crearDetallePedido(coded, cantidad,codigo,pedido));			
 			}
+			System.out.println("Su pedido ha sido creado.");
 		}
 		else {
 			System.out.println("Debes ocupar una mesa para realizar un pedido.");

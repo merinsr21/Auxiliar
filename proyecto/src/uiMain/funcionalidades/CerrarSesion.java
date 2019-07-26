@@ -19,7 +19,7 @@ public class CerrarSesion  extends OpcionDeMenu{
 		String nombreUsuario = entrada.next();
 		Usuario usuario = Usuario.getUsuarioConNombreUsuario(nombreUsuario);
 		Mesa mesa = usuario.getMesa();
-		mesa.liberarMesa(mesa.getCodigoM());
+		Mesa.liberarMesa(mesa.getCodigoM());
 		System.out.println("Adiós");
 		Main.usuario = null;
 		

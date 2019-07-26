@@ -21,14 +21,6 @@ public class Factura {
 		this.fecha = fecha;
 		this.pedidoF = pedido;
 	}
-	//public static void agregarFactura(String codigo, String fecha, Pedido pedido) {
-	//	Factura fact = new Factura(codigo, fecha);
-	//	Factura factura2 = new Factura(codigo, fecha, pedido);
-	//	setFacturasF(fact);
-	//	Datos.facturas.put(codigo, fact);
-	//	setFacturasF(factura2);
-	//	Datos.facturas.put(codigo, factura2);
-	//}
 	public static String generarCodigoF() {
 		int cont1 = cont;
 		cont++;

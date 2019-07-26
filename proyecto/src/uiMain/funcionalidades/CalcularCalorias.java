@@ -15,7 +15,7 @@ public class CalcularCalorias extends OpcionDeMenu {
 		Scanner entrada = new Scanner(System.in);
 		System.out.print("Ingrese el nombre del usuario al cual le desea revisar su pedido: ");
 		String nombreUsuario = entrada.next();
-		System.out.println("Ingrese la fecha del pedido: ");
+		System.out.println("Ingrese la fecha del pedido(día/mes/año): ");
 		String fecha = entrada.next();
 		Usuario usuario = Usuario.getUsuarioConNombreUsuario(nombreUsuario);
 		Pedido pedido = null;

@@ -36,7 +36,7 @@ public class Calificar extends OpcionDeMenu {
 				Calificacion ca = Calificacion.crearCalificacion(codigo, puntaje, usuario);
 				print = "Gracias por calificar, vuelva pronto.";
 				if(!print.equals("La comida que desea calificar debe estar en su pedido.")){
-					System.out.println("¿Desea añadir un comentario a su calificación?   1 = Si , 2 = No");
+					System.out.print("¿Desea añadir un comentario a su calificación? Ingrese 1 = Si , 2 = No  : ");
 					int n  = entrada.nextInt();
 					if(n == 1) {
 						System.out.println("Ingrese un breve comentario sobre la comida:");

@@ -9,7 +9,7 @@ public class Mesa {
 	private String codigo;
 	private String numeroDeSillas;
 	private String ocupada; //ocupada = true, no ocupada = false
-	public ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+	private Usuario usuario;
 	private static ArrayList<Mesa> mesasM = new ArrayList<Mesa>();
 	
 	public Mesa() {
@@ -53,6 +53,13 @@ public class Mesa {
 		return Datos.mesas;
 	}
 	
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 	public String toString() {
 		return "Mesa número "+getCodigoM()+", con "+" "+getNumeroDeSillas()+" "+"sillas";
 	}
@@ -74,7 +81,6 @@ public class Mesa {
 					else {
 						buscador.setOcupada("true");
 						Usuario.getUsuarioConNombreUsuario(nombreUsuario).setMesa(buscador);
-						buscador.usuarios.add(Usuario.getUsuarioConNombreUsuario(nombreUsuario));
 						print = "La mesa"+" "+buscador.getCodigoM()+" "+"ha sido ocupada.";
 						break;
 					}
@@ -85,11 +91,13 @@ public class Mesa {
 		return print;
 	}
 	
-	public void liberarMesa(String codigo) {
-		for(Mesa buscador: Mesa.getMesasM()) {
-			if(buscador.codigo.equals(codigo)) {
-				usuarios.get(0).setMesa(null);
-				buscador.usuarios = null;
+	public static void liberarMesa(String codigo) {
+		for(Map.Entry<String, Mesa> mc : Datos.mesas.entrySet()) {
+			Mesa c = mc.getValue();
+			if(c.getCodigoM().equals(codigo)) {
+				c.getUsuario().setMesa(null);
+				c.setUsuario(null);
+				c.setOcupada("false");
 			}
 		}
 	}
